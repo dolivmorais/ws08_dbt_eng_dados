@@ -1,3 +1,4 @@
+{{ config(materialized='table') }}
 
 select
 	s.state_id ,
@@ -6,8 +7,8 @@ select
 	c.city ,
 	s.state,
 	co.country
-from bronze.city c 
-	left join bronze.state s
+from {{ source('bronze', 'city') }} c 
+	left join {{ source('bronze', 'state') }} s
 		on s.state_id  = c.state_id 
-	left join bronze.country co
+	left join {{ source('bronze', 'country') }} co
 		on co.country_id = s.country_id 

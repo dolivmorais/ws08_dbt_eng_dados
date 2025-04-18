@@ -17,9 +17,7 @@ clean-targets:
 
 models:
   owsbanco:
-    example:
-      +materialized: view
     silver:
       +materialized: view
-#    gold:
-#      +materialized: table
+    gold:
+      +materialized: table
